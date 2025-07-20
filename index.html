@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(255, 127, 204);
+        }
+
+        main {
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            position: relative;
+
+        }
+
+        .cont {
+            height: 100%;
+            /* overflow: scroll; */
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            transition: transform 0.2s;
+            will-change: transform;
+        }
+
+        .cont2 {
+            transform: translateX(var(--translateX2));
+            left: 100vw;
+            width: fit-content;
+
+        }
+
+        .cont1 {
+            transform: translateX(var(--translateX));
+        }
+
+        .contoff {
+            opacity: 0;
+            /* left: 100vw; */
+        }
+
+        .conton {
+            opacity: 1;
+            /* right: 0; */
+            left: 100vw
+        }
+
+
+
+        .item {
+            height: 100%;
+            aspect-ratio: 1/1;
+            padding: 0.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="cont cont1"></div>
+        <div class="cont cont2"></div>
+    </main>
+</body>
+
+</html>
+
+<script>
+
+    const cont1 = document.querySelector('.cont1')
+    const cont2 = document.querySelector('.cont2')
+
+
+    const items = {
+
+        video: [
+            './assets/bag.webm',
+            './assets/beer.webm',
+            './assets/clock.webm',
+            './assets/dice.webm',
+            './assets/drink.webm',
+            './assets/gold.webm',
+            './assets/lock.webm',
+            './assets/phone.webm',
+            './assets/tape.webm',
+
+            './assets/Front(1).mp4',
+            './assets/Front(2).mp4',
+            './assets/Front(3).mp4',
+            './assets/Front(4).mp4',
+            './assets/Front.mp4'
+        ],
+
+        img: [
+            './assets/06_3D_BTCFlower.png',
+            './assets/08_3D_Receipt.png',
+            './assets/11_3D_Column.png',
+            './assets/Lifestyle_04.png'
+        ]
+
+    }
+
+    class CloneContent {
+
+        constructor() {
+
+            this.line_length
+
+            this.contOnPoint
+            this.contOffPoint
+
+            this.cont1OnFlag = true
+            this.cont2OnFlag = false
+
+            this.count1 = 0
+            this.count2 = 0
+
+
+        }
+
+
+        getLength = () => {
+            // this.length = items.reduce((acc, e) => acc + e.length, 0)
+
+            // console.log(this.length)
+        }
+
+
+        generateNumber(min, max) {
+            let number = Math.floor(Math.random() * (max - min + 1)) + min
+            return number
+        }
+
+
+        // вынести в отдельную функцию или класс
+        fillcont(parent) {
+
+            for (let type in items) {
+                items[type].forEach(src => {
+
+                    let element = document.createElement(type)
+                    element.classList.add('item', type + 'item')
+                    element.src = src
+
+                    if (type == 'video') {
+                        element.autoplay = true;
+                        element.muted = true;
+                        element.loop = true;
+                    }
+
+                    parent.append(element)
+
+                })
+            }
+
+        }
+
+
+
+
+        animateconts = (arg, counter, flag, css,
+            anotherarg, anothercounter, anotherflag, anothercss) => {
+            let rect = arg.getBoundingClientRect()
+            let left = rect.right - window.innerWidth
+            if (this[flag]) {
+                if (rect.right < 0) {
+                    arg.classList.add('contoff')
+                    this[flag] = false
+                    this[counter] = 0
+                }
+                console.log(left)
+                if (!this[anotherflag] && left < 0) {
+                    console.log('done')
+                    this[anotherflag] = true
+                    anotherarg.classList.remove('contoff')
+                    anotherarg.classList.add('conton')
+                }
+                this[counter] -= 3
+                document.documentElement.style.setProperty(css, this[counter] + 'px')
+            } 
+            requestAnimationFrame(() => this.animateconts.call(this, arg, counter, flag, css,
+                anotherarg, anothercounter, anotherflag, anothercss))
+        }
+
+
+
+
+
+        init = () => {
+            this.fillcont(cont1)
+            this.fillcont(cont2)
+
+            
+            this.animateconts(
+                cont1,
+                'count1',
+                'cont1OnFlag',
+                '--translateX',
+
+                cont2,
+                'count2',
+                'cont1OnFlag2',
+                '--translateX2'
+            )
+            
+            
+
+
+            this.animateconts(
+                cont2,
+                'count2',
+                'cont1OnFlag2',
+                '--translateX2',
+
+                cont1,
+                'count1',
+                'cont1OnFlag',
+                '--translateX'
+            )
+
+        }
+
+
+
+    }
+    new CloneContent().init()
+
+
+
+
+</script>
