@@ -174,6 +174,10 @@
             anotherarg, anothercounter, anotherflag, anothercss) => {
             let rect = arg.getBoundingClientRect()
             let left = rect.right - window.innerWidth
+            // создать два объекта конт с каунтом
+            // в условный цикл добавть вместо this параметр
+            //  а в него передвать аргументов объект
+            // получается нужна еще одна функция обернуть условный блок
             if (this[flag]) {
                 if (rect.right < 0) {
                     arg.classList.add('contoff')
@@ -211,7 +215,7 @@
 
                 cont2,
                 'count2',
-                'cont1OnFlag2',
+                'cont2OnFlag',
                 '--translateX2'
             )
             
@@ -221,7 +225,7 @@
             this.animateconts(
                 cont2,
                 'count2',
-                'cont1OnFlag2',
+                'cont2OnFlag',
                 '--translateX2',
 
                 cont1,
