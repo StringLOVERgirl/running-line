@@ -25,7 +25,6 @@
             flex-direction: row;
             overflow: hidden;
             position: relative;
-            /* left: 50%; */
             top: 50%;
             transform: translateY(-50%);
 
@@ -36,7 +35,6 @@
             display: flex;
             flex-direction: row;
             position: absolute;
-            /* transition: transform 0.2s; */
             will-change: transform;
         }
 
@@ -84,7 +82,6 @@
             clip-path: inset(40px);
             transition: clip-path 0.5s, background-color 0.5s;
             background-color: red;
-            /* border-radius: 50%; */
         }
 
         .elementCont:hover{
@@ -192,7 +189,6 @@ window.addEventListener('DOMContentLoaded',() =>{
                 if (src)
 
                     if (type == 'video') {
-                        // element.autoplay = true;
                         element.muted = true;
                         element.loop = true;
                     }
@@ -230,23 +226,7 @@ window.addEventListener('DOMContentLoaded',() =>{
               count: 0,
               css: '--translateX2'
             }
-
-
         }
-
-
-        getLength = () => {
-            // this.length = items.reduce((acc, e) => acc + e.length, 0)
-
-            // console.log(this.length)
-        }
-
-
-        generateNumber(min, max) {
-            let number = Math.floor(Math.random() * (max - min + 1)) + min
-            return number
-        }
-
 
 
 
@@ -267,16 +247,10 @@ window.addEventListener('DOMContentLoaded',() =>{
                     el.active = false
                     el.count = 0
                 }
-// console.log(left + ' left')
                 if(left < 0 && !el2.active){
                     el2.active = true
                     el2.element.classList.add('conton')
                     el2.element.classList.remove('contoff')
-                    // в стыке блоков откуда то берется дыра в 70 пикслей 
-                    // в момент когда второй выезжает из левой границы
-                    // следующий код компенсирует это
-                    // el2.count -= 70 нужен был из за транзишн из-за 
-                    // этого был разрыв
                     document.documentElement.style.setProperty(el2.css, el2.count + 'px')
                 }
                 document.documentElement.style.setProperty(el.css, el.count + 'px')
@@ -287,73 +261,14 @@ window.addEventListener('DOMContentLoaded',() =>{
             logic(element1,element2)
             logic(element2,element1)
 
-
-
-
-            // создать два объекта конт с каунтом
-            // в условный цикл добавть вместо this параметр
-            //  а в него передвать аргументов объект
-            // получается нужна еще одна функция обернуть условный блок
-            // if (element1.active) {
-            //     element1.count -= 5
-
-            //     if (rect1.right < 0) {
-            //         element1.element.classList.remove('conton')
-            //         element1.element.classList.add('contoff')
-            //         element1.active = false
-            //         element1.count = 0
-            //     }
-
-            //     if(left1 < 0 && !element2.active){
-            //         console.log('lef2')
-            //         element2.active = true
-            //         element2.element.classList.add('conton')
-            //         element2.element.classList.remove('contoff')
-            //         // в стыке блоков откуда то берется дыра в 70 пикслей 
-            //         // в момент когда второй выезжает из левой границы
-            //         // следующий код компенсирует это
-            //         element2.count -= 70
-            //         document.documentElement.style.setProperty(element2.css, element2.count + 'px')
-            //     }
-            //     document.documentElement.style.setProperty(element1.css, element1.count + 'px')
-            // } 
-
-
-            // if(element2.active){
-            //     element2.count -= 5
-
-            //     if (rect2.right < 0) {
-            //         element2.element.classList.remove('conton')
-            //         element2.element.classList.add('contoff')
-            //         element2.active = false
-            //         element2.count = 0
-            //         console.log(1111)
-            //     }
-
-            //     if (left2 < 0 && !element1.active){
-
-            //         element1.active = true
-            //         element1.element.classList.add('conton')
-            //         element1.element.classList.remove('contoff')
-            //         element1.count -= 70
-            //         document.documentElement.style.setProperty(element1.css, element1.count + 'px')
-
-            //     }
-
-            //     document.documentElement.style.setProperty(element2.css, element2.count + 'px') 
-
-            //     }
-            
             requestAnimationFrame(() => this.animateconts.call(this,element1, element2))
         }
 
 
 
 
-
         init = () => {
-            // this.fillcont(this.cont1.element)
-            // this.fillcont(this.cont2.element)
+
 
             this.animateconts(
          this.cont1, this.cont2)
