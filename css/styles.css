@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: black;
+    height: 100vh;
+  }
+
+  main {
+    background-color: black;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+
+    flex-direction: row;
+    overflow: hidden;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .cont {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    will-change: transform;
+  }
+
+  .cont2 {
+    transform: translateX(var(--translateX2));
+    left: 100%;
+    width: fit-content;
+    /* border: 1px solid blue; */
+  }
+
+  .cont1 {
+    transform: translateX(var(--translateX));
+    /* border: 1px solid red; */
+  }
+
+  .contoff {
+    opacity: 0;
+    /* left: 100%; вроде особо не надо */
+  }
+
+  .conton {
+    opacity: 1;
+    left: 100%;
+    /*  когда срабатывает флаг контейнер оказывается справого блока
+        и начинает движения когда другой уходит за правую границу
+        , и для этого флаг уходит в тру */
+  }
+
+  .item {
+    width: clamp(180px,100%,250px);
+    aspect-ratio: 1/1;
+    padding: 0.1em;
+    transition: transform 0.7s;
+    transform: scale(0.5);
+  }
+
+  .item:hover {
+    transform: scale(1) translateZ(0);
+  }
+
+  .elementCont {
+    clip-path: inset(40px);
+    transition: clip-path 0.5s, background-color 0.5s, border-radius 0.5s;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+width: clamp(180px, 30vw, 250px);
+    aspect-ratio: 1/1;
+align-self: center; /* или center, если надо по центру */
+
+
+  }
+
+  .elementCont:hover {
+    clip-path: inset(0%);
+    background-color: greenyellow;
+    /* border-radius: 50%; */
+  }
+
+  .preloadcont {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 999;
+    background: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .spinner {
+    margin: 1em;
+    border-radius: 50%;
+    border: solid 5px rgb(88, 88, 88);
+    border-top: 5px solid greenyellow;
+    height: 100px;
+    width: 100px;
+    animation: spin 2s infinite linear;
+  }
+
+  @keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+  }
+
+  .hideLoadScrenn {
+    display: none;
+  }
