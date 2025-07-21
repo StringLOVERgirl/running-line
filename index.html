@@ -1,285 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            background-color: black;
-            height: 100vh;
-        }
+      body {
+        background-color: black;
+        height: 100vh;
+      }
 
-        main {
-            background-color: black;
-            height: 40vh;
-            display: flex;
-            flex-direction: row;
-            overflow: hidden;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
+      main {
+        background-color: black;
+        height: 40vh;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
 
-        }
+      .cont {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        will-change: transform;
+      }
 
-        .cont {
-            height: 100%;
-            display: flex;
-            flex-direction: row;
-            position: absolute;
-            will-change: transform;
-        }
+      .cont2 {
+        transform: translateX(var(--translateX2));
+        left: 100%;
+        width: fit-content;
+        /* border: 1px solid blue; */
+      }
 
-        .cont2 {
-            transform: translateX(var(--translateX2));
-            left: 100%;
-            width: fit-content;
-            /* border: 1px solid blue; */
+      .cont1 {
+        transform: translateX(var(--translateX));
+        /* border: 1px solid red; */
+      }
 
-        }
+      .contoff {
+        opacity: 0;
+        /* left: 100%; вроде особо не надо */
+      }
 
-        .cont1 {
-            transform: translateX(var(--translateX));
-            /* border: 1px solid red; */
-
-        }
-
-        .contoff {
-            opacity: 0;
-            /* left: 100%; вроде особо не надо */ 
-        }
-
-        .conton {
-            opacity: 1;
-            left: 100%; 
-            /*  когда срабатывает флаг контейнер оказывается справого блока
+      .conton {
+        opacity: 1;
+        left: 100%;
+        /*  когда срабатывает флаг контейнер оказывается справого блока
             и начинает движения когда другой уходит за правую границу
             , и для этого флаг уходит в тру */
-        }
+      }
 
-        .item {
-            height: 100%;
-            aspect-ratio: 1/1;
-            padding: 0.1em;
-            transition: transform 0.7s;
-             transform: scale(0.5);
+      .item {
+        height: 100%;
+        aspect-ratio: 1/1;
+        padding: 0.1em;
+        transition: transform 0.7s;
+        transform: scale(0.5);
+      }
 
-        }
+      .item:hover {
+        transform: scale(1);
+      }
 
-        .item:hover {
-             transform: scale(1);
-        }
+      .elementCont {
+        clip-path: inset(40px);
+        transition: clip-path 0.5s, background-color 0.5s;
+        background-color: red;
+      }
 
-        .elementCont {
-            clip-path: inset(40px);
-            transition: clip-path 0.5s, background-color 0.5s;
-            background-color: red;
-        }
-
-        .elementCont:hover{
-            clip-path: inset(0%);
-            background-color: greenyellow;
-
-        }
-
+      .elementCont:hover {
+        clip-path: inset(0%);
+        background-color: greenyellow;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <div class="cont cont1"></div>
-        <div class="cont cont2"></div>
+      <div class="cont cont1"></div>
+      <div class="cont cont2"></div>
     </main>
-</body>
-
+  </body>
 </html>
 
 <script>
+  // const cont1 = document.querySelector('.cont1')
+  // const cont2 = document.querySelector('.cont2')
 
-    // const cont1 = document.querySelector('.cont1')
-    // const cont2 = document.querySelector('.cont2')
-
-
-    class GlobalListeners {
-            constructor() {
-                this.currentTarget = null
-                this.addListeners()
-            }
-
-            addListeners() {
-
-                window.addEventListener('mouseout', (event) => {
-                    if (event.target.tagName == 'VIDEO') {
-                        event.target.pause()
-                    }
-                })
-
-
-                window.addEventListener('mouseover', (event) => {
-                    let target = event.target
-                    this.currentTarget = target
-                    console.log(target)
-                    if (target.tagName == 'VIDEO') {
-                        target.play()
-                    }
-                })
-            }
-
-        } new GlobalListeners()
-
-window.addEventListener('load',() =>{
-
-
-
-
-    const items = {
-
-        video: [
-            './assets/bag.webm',
-            './assets/beer.webm',
-            './assets/Front(2).mp4',
-            './assets/clock.webm',
-            './assets/Front(4).mp4',
-            './assets/dice.webm',
-            './assets/drink.webm',
-            './assets/Front(3).mp4',
-            './assets/gold.webm',
-            './assets/lock.webm',
-             './assets/Front.mp4',
-            './assets/phone.webm',
-            './assets/tape.webm',
-
-            './assets/Front(1).mp4',
-            
-            
-            
-        ],
-
-        img: [
-            './assets/06_3D_BTCFlower.png',
-            './assets/08_3D_Receipt.png',
-            './assets/11_3D_Column.png',
-            './assets/Lifestyle_04.png'
-        ]
-
+  class GlobalListeners {
+    constructor() {
+      this.currentTarget = null;
+      this.addListeners();
     }
 
-
-    const cont1 = document.querySelector('.cont1')
-     const cont2 = document.querySelector('.cont2')
-    function addMedia(parent) {
-
-
-        for (let type in items) {
-            items[type].forEach(src => {
-                let elementcont = document.createElement('div')
-                elementcont.classList.add('elementCont')
-                let element = document.createElement(type)
-                element.classList.add('item', type + 'item')
-                element.src = src
-
-                if (src)
-
-                    if (type == 'video') {
-                        element.muted = true;
-                        element.loop = true;
-                    }
-                elementcont.append(element)
-                parent.append(elementcont)
-
-            })
+    addListeners() {
+      window.addEventListener("mouseout", (event) => {
+        if (event.target.tagName == "VIDEO") {
+          event.target.pause();
         }
+      });
+
+      window.addEventListener("mouseover", (event) => {
+        let target = event.target;
+        this.currentTarget = target;
+        console.log(target);
+        if (target.tagName == "VIDEO") {
+          target.play();
+        }
+      });
+    }
+  }
+  new GlobalListeners();
+
+  window.addEventListener("load", () => {
+    const items = {
+      video: [
+        "./assets/bag.webm",
+        "./assets/beer.webm",
+        "./assets/Front(2).mp4",
+        "./assets/clock.webm",
+        "./assets/Front(4).mp4",
+        "./assets/dice.webm",
+        "./assets/drink.webm",
+        "./assets/Front(3).mp4",
+        "./assets/gold.webm",
+        "./assets/lock.webm",
+        "./assets/Front.mp4",
+        "./assets/phone.webm",
+        "./assets/tape.webm",
+
+        "./assets/Front(1).mp4",
+      ],
+
+      img: [
+        "./assets/06_3D_BTCFlower.png",
+        "./assets/08_3D_Receipt.png",
+        "./assets/11_3D_Column.png",
+        "./assets/Lifestyle_04.png",
+      ],
+    };
+
+    const cont1 = document.querySelector(".cont1");
+    const cont2 = document.querySelector(".cont2");
+    function addMedia(parent) {
+      for (let type in items) {
+        items[type].forEach((src) => {
+          let elementcont = document.createElement("div");
+          elementcont.classList.add("elementCont");
+          let element = document.createElement(type);
+          element.classList.add("item", type + "item");
+          element.src = src;
+
+          if (src)
+            if (type == "video") {
+              element.muted = true;
+              element.loop = true;
+            }
+          elementcont.append(element);
+          parent.append(elementcont);
+        });
+      }
     }
 
-    addMedia(cont1)
-    addMedia(cont2)
-    
-
-
-
-
+    addMedia(cont1);
+    addMedia(cont2);
 
     class CloneContent {
+      constructor() {
+        this.line_length;
 
-        constructor() {
+        this.cont1 = {
+          element: document.querySelector(".cont1"),
+          active: true,
+          count: 0,
+          css: "--translateX",
+        };
 
-            this.line_length
+        this.cont2 = {
+          element: document.querySelector(".cont2"),
+          active: false,
+          count: 0,
+          css: "--translateX2",
+        };
+      }
 
-            this.cont1 = {
-              element: document.querySelector('.cont1'),
-              active: true,
-              count: 0,
-              css: '--translateX'
+      animateconts = (element1, element2) => {
+        function logic(el, el2) {
+          let rect = el.element.getBoundingClientRect();
+          let left = rect.right - window.innerWidth;
+
+          if (el.active) {
+            el.count -= 2;
+
+            if (rect.right < 0) {
+              el.element.classList.remove("conton");
+              el.element.classList.add("contoff");
+              el.active = false;
+              el.count = 0;
             }
-
-            this.cont2 = {
-              element: document.querySelector('.cont2'),
-              active: false,
-              count: 0,
-              css: '--translateX2'
+            if (left < 0 && !el2.active) {
+              el2.active = true;
+              el2.element.classList.add("conton");
+              el2.element.classList.remove("contoff");
+              document.documentElement.style.setProperty(
+                el2.css,
+                el2.count + "px"
+              );
             }
+            document.documentElement.style.setProperty(el.css, el.count + "px");
+          }
         }
 
+        logic(element1, element2);
+        logic(element2, element1);
 
+        requestAnimationFrame(() =>
+          this.animateconts.call(this, element1, element2)
+        );
+      };
 
-        animateconts = (element1, element2) => {
-
-            function logic(el, el2){
-
-                let rect = el.element.getBoundingClientRect()
-                let left = rect.right - window.innerWidth
-
-                if (el.active) {
-
-                el.count -= 2
-
-                if (rect.right < 0) {
-                    el.element.classList.remove('conton')
-                    el.element.classList.add('contoff')
-                    el.active = false
-                    el.count = 0
-                }
-                if(left < 0 && !el2.active){
-                    el2.active = true
-                    el2.element.classList.add('conton')
-                    el2.element.classList.remove('contoff')
-                    document.documentElement.style.setProperty(el2.css, el2.count + 'px')
-                }
-                document.documentElement.style.setProperty(el.css, el.count + 'px')
-            } 
-
-            }
-
-            logic(element1,element2)
-            logic(element2,element1)
-
-            requestAnimationFrame(() => this.animateconts.call(this,element1, element2))
-        }
-
-
-
-
-        init = () => {
-
-
-            this.animateconts(
-         this.cont1, this.cont2)
-        }
-
-
-
+      init = () => {
+        this.animateconts(this.cont1, this.cont2);
+      };
     }
-    new CloneContent().init()
-
-})
-
-
+    new CloneContent().init();
+  });
 </script>
