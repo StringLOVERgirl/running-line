@@ -21,6 +21,7 @@
         height: 40vh;
         display: flex;
         align-items: center;
+
         flex-direction: row;
         overflow: hidden;
         position: relative;
@@ -62,7 +63,7 @@
       }
 
       .item {
-        width: 100%;
+        width: clamp(180px,100%,250px);
         aspect-ratio: 1/1;
         padding: 0.1em;
         transition: transform 0.7s;
@@ -80,9 +81,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-width: clamp(70px, 23vw, 250px);
+width: clamp(180px, 30vw, 250px);
         aspect-ratio: 1/1;
-        /* flex: 0 0 auto; */
 align-self: center; /* или center, если надо по центру */
 
 
