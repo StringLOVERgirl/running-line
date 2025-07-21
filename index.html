@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script type="module" src="./preloading.js"></script>
+    <script type="module" src="./script.js"></script>
     <style>
       * {
         margin: 0;
@@ -92,10 +94,49 @@ align-self: center; /* или center, если надо по центру */
         clip-path: inset(0%);
         background-color: greenyellow;
       }
+
+      .preloadcont {
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        z-index: 999;
+        background: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .spinner {
+        margin: 1em;
+        border-radius: 50%;
+        border: solid 5px rgb(88, 88, 88);
+        border-top: 5px solid greenyellow;
+        height: 100px;
+        width: 100px;
+        animation: spin 2s infinite linear;
+      }
+
+      @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+      }
+
+      .hideLoadScrenn {
+        display: none;
+      }
     </style>
   </head>
 
   <body>
+    <div class="preloadcont">
+        <div class="spinner"></div>
+        <div class="percent">0</div>
+    </div>
     <main>
       <div class="cont cont1"></div>
       <div class="cont cont2"></div>
@@ -132,7 +173,7 @@ align-self: center; /* или center, если надо по центру */
   }
   new GlobalListeners();
 
-  window.addEventListener("load", () => {
+//   window.addEventListener("load", () => {
     const items = {
       video: [
         "./assets/bag.webm",
@@ -244,5 +285,5 @@ align-self: center; /* или center, если надо по центру */
       };
     }
     new CloneContent().init();
-  });
+//   });
 </script>

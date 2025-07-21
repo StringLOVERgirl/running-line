@@ -1,0 +1,229 @@
+3 варианта кода какой лучше
+
+1 вариант
+
+в конутсруторе это создается
+
+this.coвnt1OnFlag = true
+
+this.cont2OnFlag = false
+
+
+this.count1 = 0
+
+this.count2 = 0
+
+вне его метод
+
+animateconts = (arg, counter, flag, css,
+
+anotherarg, anothercounter, anotherflag, anothercss) => {
+
+let rect = arg.getBoundingClientRect()
+
+let left = rect.right - window.innerWidth
+
+// создать два объекта конт с каунтом
+
+// в условный цикл добавть вместо this параметр
+
+// а в него передвать аргументов объект
+
+// получается нужна еще одна функция обернуть условный блок
+
+if (this[flag]) {
+
+if (rect.right < 0) { arg.classList.add('contoff') this[flag]=false this[counter]=0 } console.log(left) if
+    (!this[anotherflag] && left < 0) { console.log('done') this[anotherflag]=true anotherarg.classList.remove('contoff')
+    anotherarg.classList.add('conton') } this[counter] -=3 document.documentElement.style.setProperty(css, this[counter]
+    + 'px' ) } requestAnimationFrame(()=> this.animateconts.call(this, arg, counter, flag, css,
+
+    anotherarg, anothercounter, anotherflag, anothercss))
+
+    }
+
+    вызывается потом
+
+    this.animateconts(
+
+    cont1,
+
+    'count1',
+
+    'cont1OnFlag',
+
+    '--translateX',
+
+
+    cont2,
+
+    'count2',
+
+    'cont2OnFlag',
+
+    '--translateX2'
+
+    )
+
+    2 вариант
+
+    в конструторке создается
+
+    this.cont1 = {
+
+    element: document.querySelector('.cont1'),
+
+    active: true,
+
+    count: 0,
+
+    css: '--translateX'
+
+    }
+
+
+    this.cont2 = {
+
+    element: document.querySelector('.cont2'),
+
+    active: false,
+
+    count: 0,
+
+    css: '--translateX2'
+
+    }
+
+    метод выглядит так теперь
+
+    animateconts = (element1, element2) => {
+
+    // console.log(element1.count)
+
+
+    let rect1 = element1.element.getBoundingClientRect()
+
+    let left1 = rect1.right - window.innerWidth
+
+
+
+    let rect2 = element2.element.getBoundingClientRect()
+
+    let left2 = rect2.right - window.innerWidth
+
+    // создать два объекта конт с каунтом
+
+    // в условный цикл добавть вместо this параметр
+
+    // а в него передвать аргументов объект
+
+    // получается нужна еще одна функция обернуть условный блок
+
+    if (element1.active) {
+
+    element1.count -= 5
+
+
+    if (rect1.right < 0) { element1.element.classList.remove('conton') element1.element.classList.add('contoff') вы
+        element1.active=false // setTimeout(()=>{
+
+        element1.count = 0
+
+        // element1.element.classList.add('contoff')
+
+
+        // document.documentElement.style.setProperty(element1.css, element1.count + 'px')
+
+
+        // },800)
+
+        // console.log(1111)
+
+        element2.active = true
+
+        }
+
+        // console.log(rect1.right)
+
+
+        if(left1 < 0 && !element2.active){ console.log('lef2') element2.active=true
+            element2.element.classList.add('conton') element2.element.classList.remove('contoff') // в стыке блоков
+            откуда то берется дыра в 70 пикслей // в момент когда второй выезжает из левой границы // следующий код
+            компенсирует это element2.count -=70 document.documentElement.style.setProperty(element2.css, element2.count
+            + 'px' ) } // element1.count -=10 document.documentElement.style.setProperty(element1.css, element1.count
+            + 'px' ) } if(element2.active){ element2.count -=5 if (rect2.right < 0) {
+            element2.element.classList.remove('conton') element2.element.classList.add('contoff') element2.active=false
+            // setTimeout(()=>{
+
+            element2.count = 0
+
+            // document.documentElement.style.setProperty(element2.css, element2.count + 'px')
+
+            // element2.element.classList.add('contoff')
+
+
+            // },800)
+
+            console.log(1111)
+
+            // element1.active = true
+
+
+
+            }
+
+            if (left2 < 0 && !element1.active){ element1.active=true element1.element.classList.add('conton')
+                element1.element.classList.remove('contoff') element1.count -=70
+                document.documentElement.style.setProperty(element1.css, element1.count + 'px' ) } // element2.count
+                -=10 document.documentElement.style.setProperty(element2.css, element2.count + 'px' ) }
+                requestAnimationFrame(()=> this.animateconts.call(this,element1, element2))
+
+                }
+
+                вызывается animateconts (this.cont1, this.cont2)
+
+                3 вариант когда
+
+                создается такой же объект в конструторе как
+
+                во втором варианте
+
+                сам метод теперь такой
+
+
+                animateconts = (element1, element2) => {
+
+                // console.log(element1.count)
+
+
+
+                function logic(el, el2){
+
+
+                let rect = el.element.getBoundingClientRect()
+
+                let left = rect.right - window.innerWidth
+
+
+                if (el.active) {
+
+
+                el.count -= 5
+
+
+                if (rect.right < 0) { el.element.classList.remove('conton') el.element.classList.add('contoff')
+                    el.active=false el.count=0 } if(left < 0 && !el2.active){ console.log('lef2') el2.active=true
+                    el2.element.classList.add('conton') el2.element.classList.remove('contoff') // в стыке блоков откуда
+                    то берется дыра в 70 пикслей // в момент когда второй выезжает из левой границы // следующий код
+                    компенсирует это el2.count -=70 document.documentElement.style.setProperty(el2.css, el2.count + 'px'
+                    ) } document.documentElement.style.setProperty(el.css, el.count + 'px' ) } }
+                    logic(element1,element2) logic(element2,element1) requestAnimationFrame(()=>
+                    this.animateconts.call(this,element1, element2))
+
+                    }
+
+                    вызов this.animateconts(
+
+                    this.cont1, this.cont2)
+
+                    }
