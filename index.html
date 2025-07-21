@@ -73,12 +73,12 @@
       }
 
       .item:hover {
-        transform: scale(1);
+        transform: scale(1) translateZ(0);
       }
 
       .elementCont {
         clip-path: inset(40px);
-        transition: clip-path 0.5s, background-color 0.5s;
+        transition: clip-path 0.5s, background-color 0.5s, border-radius 0.5s;
         background-color: red;
         display: flex;
         align-items: center;
@@ -93,6 +93,7 @@ align-self: center; /* или center, если надо по центру */
       .elementCont:hover {
         clip-path: inset(0%);
         background-color: greenyellow;
+        /* border-radius: 50%; */
       }
 
       .preloadcont {
