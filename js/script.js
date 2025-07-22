@@ -69,8 +69,8 @@ export function addMedia(parent) {
             element.src = src;
 
                 if (type == "video") {
-                    // element.muted = true;
-                    // element.loop = true;
+                    element.muted = true;
+                    element.loop = true;
                 }
             elementcont.append(element);
             parent.append(elementcont);
