@@ -1,4 +1,4 @@
-import {inti} from './script.js'
+import {init} from './script.js'
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
         clearInterval(intervalId)
         percent.textContent = '100%'
         preloadcont.classList.add('hideLoadScrenn')
-        inti(cont1,cont2)
+        init(cont1,cont2)
     })
     // end of load listener
 

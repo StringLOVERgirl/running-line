@@ -1,6 +1,5 @@
 export class GlobalListeners {
     constructor() {
-        this.currentTarget = null;
         this.addListeners();
     }
 
@@ -13,7 +12,6 @@ export class GlobalListeners {
 
         window.addEventListener("mouseover", (event) => {
             let target = event.target;
-            this.currentTarget = target;
             console.log(target);
             if (target.tagName == "VIDEO") {
                 target.play();
@@ -21,42 +19,48 @@ export class GlobalListeners {
         });
     }
 }
-// new GlobalListeners();
 
 
 
-export const items = {
-    video: [
-        "./assets/bag.webm",
-        "./assets/beer.webm",
-        "./assets/Front(2).mp4",
-        "./assets/clock.webm",
-        "./assets/Front(4).mp4",
-        "./assets/dice.webm",
-        "./assets/drink.webm",
-        "./assets/Front(3).mp4",
-        "./assets/gold.webm",
-        "./assets/lock.webm",
-        "./assets/Front.mp4",
-        "./assets/phone.webm",
-        "./assets/tape.webm",
+const items = {
+            video: [
+                "./assets/bag.webm",
+                "./assets/beer.webm",
+                "./assets/Front(2).mp4",
+                "./assets/clock.webm",
+                "./assets/Front(4).mp4",
+                "./assets/dice.webm",
+                "./assets/drink.webm",
+                "./assets/Front(3).mp4",
+                "./assets/gold.webm",
+                "./assets/lock.webm",
+                "./assets/Front.mp4",
+                "./assets/phone.webm",
+                "./assets/tape.webm",
 
-        "./assets/Front(1).mp4",
-    ],
+                "./assets/Front(1).mp4",
+            ],
 
-    img: [
-        "./assets/06_3D_BTCFlower.png",
-        "./assets/08_3D_Receipt.png",
-        "./assets/11_3D_Column.png",
-        "./assets/Lifestyle_04.png",
-    ],
-};
+            img: [
+                "./assets/06_3D_BTCFlower.png",
+                "./assets/08_3D_Receipt.png",
+                "./assets/11_3D_Column.png",
+                "./assets/Lifestyle_04.png",
+            ],
+        }
 
-const cont1 = document.querySelector(".cont1");
-const cont2 = document.querySelector(".cont2");
+
+function domLink(arg, type='.'){
+        let link = document.querySelector(type+arg)
+        return link
+}
+
+
 
 export function addMedia(parent) {
+
     for (let type in items) {
+        console.log(type)
         items[type].forEach((src) => {
             let elementcont = document.createElement("div");
             elementcont.classList.add("elementCont");
@@ -64,10 +68,9 @@ export function addMedia(parent) {
             element.classList.add("item", type + "item");
             element.src = src;
 
-            if (src)
                 if (type == "video") {
-                    element.muted = true;
-                    element.loop = true;
+                    // element.muted = true;
+                    // element.loop = true;
                 }
             elementcont.append(element);
             parent.append(elementcont);
@@ -75,12 +78,10 @@ export function addMedia(parent) {
     }
 }
 
-// addMedia(cont1);
-// addMedia(cont2);
 
-export class CloneContent {
+
+export class AnimateLine {
     constructor() {
-        this.line_length;
 
         this.cont1 = {
             element: document.querySelector(".cont1"),
@@ -97,50 +98,54 @@ export class CloneContent {
         };
     }
 
-    animateconts = (element1, element2) => {
-        function logic(el, el2) {
-            let rect = el.element.getBoundingClientRect();
-            let left = rect.right - window.innerWidth;
+    logic(el, el2) {
+        let rect = el.element.getBoundingClientRect();
+        let left = rect.right - window.innerWidth;
 
-            if (el.active) {
-                el.count -= 1;
+        if (el.active) {
+            el.count -= 1;
 
-                if (rect.right < 0) {
-                    el.element.classList.remove("conton");
-                    el.element.classList.add("contoff");
-                    el.active = false;
-                    el.count = 0;
-                }
-                if (left < 0 && !el2.active) {
-                    el2.active = true;
-                    el2.element.classList.add("conton");
-                    el2.element.classList.remove("contoff");
-                    document.documentElement.style.setProperty(el2.css, el2.count + "px"
-                    );
-                }
-                document.documentElement.style.setProperty(el.css, el.count + "px");
+            if (rect.right < 0) {
+                el.element.classList.remove("conton");
+                el.element.classList.add("contoff");
+                el.active = false;
+                el.count = 0;
             }
+            if (left < 0 && !el2.active) {
+                el2.active = true;
+                el2.element.classList.add("conton");
+                el2.element.classList.remove("contoff");
+                document.documentElement.style.setProperty(el2.css, el2.count + "px"
+                );
+            }
+            document.documentElement.style.setProperty(el.css, el.count + "px");
         }
+    }
 
-        logic(element1, element2);
-        logic(element2, element1);
+
+    animateconts = (element1, element2) => {
+        
+        
+        if (element1&&element2){
+        this.logic(element1, element2);
+        this.logic(element2, element1);
 
         requestAnimationFrame(() =>
             this.animateconts.call(this, element1, element2)
-        );
+        );} else {console.log(`Элементы не найдены, попробуйте 
+        перезагрузить страницу`)}
     };
 
-    init = () => {
+    startanimation = () => {
         this.animateconts(this.cont1, this.cont2);
     };
 }
 
-export function inti(arg, arg2){
+export function init(arg, arg2){
     new GlobalListeners();
 
-    addMedia(arg);
-    addMedia(arg2);
+    addMedia(domLink('cont1'));
+    addMedia(domLink('cont2'));
 
-    new CloneContent().init()
+    new AnimateLine().startanimation()
 }
-// new CloneContent().init();
