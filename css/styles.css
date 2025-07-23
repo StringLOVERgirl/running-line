@@ -16,7 +16,7 @@ main {
   align-items: center;
 
   flex-direction: row;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   top: 50%;
   transform: translateY(-50%);
