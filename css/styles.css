@@ -12,48 +12,38 @@ body {
 main {
   background-color: black;
   height: 80svh;
+  width: fit-content;
   display: flex;
   align-items: center;
-
   flex-direction: row;
   overflow: hidden;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  animation: mainanima 60s linear infinite;
+  box-shadow: inset 0 -10px 5px black;}
+
+@keyframes mainanima {
+  from{
+    transform: translateY(-50%) translateX(0) translateZ(0);
+  }
+  to {
+    transform: translateY(-50%) translateX(-50%) translateZ(0);
+
+  }
+  
 }
 
 .cont {
   height: 50%;
   display: flex;
   flex-direction: row;
-  position: absolute;
-  will-change: transform;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -10px 5px black;
 }
 
-.cont2 {
-  transform: translateX(var(--translateX2));
-  left: 100%;
-  width: fit-content;
-  /* border: 1px solid blue; */
-}
 
-.cont1 {
-  transform: translateX(var(--translateX));
-  /* border: 1px solid red; */
-}
-
-.contoff {
-  opacity: 0;
-  /* left: 100%; вроде особо не надо */
-}
-
-.conton {
-  opacity: 1;
-  left: 100%;
-  /*  когда срабатывает флаг контейнер оказывается справого блока
-        и начинает движения когда другой уходит за правую границу
-        , и для этого флаг уходит в тру */
-}
 
 .item {
   width: clamp(180px, 100%, 250px);

@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
         clearInterval(intervalId)
         percent.textContent = '100%'
         preloadcont.classList.add('hideLoadScrenn')
-        init(cont1,cont2)
+        init()
     })
     // end of load listener
 
