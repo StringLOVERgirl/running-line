@@ -6,12 +6,12 @@
 
 body {
   background-color: black;
-  height: 100vh;
+  height: 100svh;
 }
 
 main {
   background-color: black;
-  height: 80vh;
+  height: 80svh;
   display: flex;
   align-items: center;
 
