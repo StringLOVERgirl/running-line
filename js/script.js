@@ -1,6 +1,3 @@
-// рефакторинг 
-//  - остановить смещение н случай ресайза 
-// или попробовать задавать смещение в процентах
 
  class GlobalListeners {
     constructor() {
@@ -27,7 +24,7 @@
 }
 
 
-
+ const mediaContent = [] // для прелоадера
 const items = {
             video: [
                 "./assets/bag.webm",
@@ -79,6 +76,8 @@ function domLink(arg, type='.'){
                     element.loop = true;
                 }
             elementcont.append(element);
+            if (!mediaContent.includes(element)){
+            mediaContent.push(element)} // для прелоадера
             parent.append(elementcont);
         });
     }
@@ -92,5 +91,4 @@ export function init(){
 
     addMedia(domLink('cont1'));
     addMedia(domLink('cont2'));
-
 }

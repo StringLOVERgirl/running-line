@@ -67,7 +67,7 @@ main {
   justify-content: center;
   width: clamp(180px, 30vw, 250px);
   aspect-ratio: 1/1;
-  align-self: center; /* или center, если надо по центру */
+  align-self: center; 
 }
 
 .elementCont:hover {
