@@ -5,19 +5,19 @@
 }
 
 body {
-  background-color: green;
+  background-color: black;
   height: 100svh;
   width: 100vw;
   overflow: hidden;
 }
 
 main {
-  background-color: gray;
+  background-color: black;
   height: 80svh;
   width: fit-content;
   display: flex;
   align-items: center;
-  flex-direction: row;
+  justify-content: center;
   overflow: hidden;
   position: relative;
   top: 50%;
