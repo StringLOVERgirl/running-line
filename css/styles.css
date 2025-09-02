@@ -27,10 +27,10 @@ main {
 
 @keyframes mainanima {
   from{
-    transform: translateY(-50%) translateX(0) translateZ(0);
+    transform: translateX(0) translateZ(0);
   }
   to {
-    transform: translateY(-50%) translateX(-50%) translateZ(0);
+    transform: translateX(-50%) translateZ(0);
 
   }
   
@@ -44,6 +44,7 @@ main {
   justify-content: center;
   box-shadow: inset 0 -10px 5px black;
   overflow: hidden;
+  will-change: transform;
   animation: mainanima 60s linear infinite;
 }
 
