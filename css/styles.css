@@ -12,7 +12,7 @@ body {
 }
 
 main {
-  background-color: black;
+  background-color: blue;
   height: 80svh;
   width: fit-content;
   display: flex;
@@ -48,7 +48,7 @@ main {
 
 
 .item {
-  width: 100%;
+  width: clamp(180px, 100%, 250px);
   aspect-ratio: 1/1;
   padding: 0.1em;
   transition: transform 0.7s;
