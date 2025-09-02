@@ -90,5 +90,5 @@ export function init(){
     new GlobalListeners();
 
     addMedia(domLink('cont1'));
-    addMedia(domLink('cont2'));
+    addMedia(domLink('cont1'));
 }
