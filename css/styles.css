@@ -48,7 +48,7 @@ main {
 
 
 .item {
-  width: clamp(180px, 100%, 250px);
+  width: 100%;
   aspect-ratio: 1/1;
   padding: 0.1em;
   transition: transform 0.7s;
