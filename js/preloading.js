@@ -72,6 +72,7 @@ async function onloaading() {
 
     await Promise.all(loadPromises)
         setTimeout(() => {
+            alert('hiding preoloader')
             preloadcont.classList.add('hideLoadScrenn')
         }, 1000)
 }
