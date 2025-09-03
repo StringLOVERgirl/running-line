@@ -39,8 +39,8 @@ async function onloaading() {
 
     function addPromise(element) {
         return new Promise(resolve => {
-            if (element.tagName == 'IMG') {
-                if (element.complete && element.naturalWidth != 0) {
+            if (element.tagName == 'IMG' && element.tagName == 'img') {
+                if (element.complete) {
                     resolve()
                 } else {
                     element.addEventListener('load', resolve, { once: true })
