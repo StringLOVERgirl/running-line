@@ -17,6 +17,12 @@
         items.forEach(e=>{
 
         e.addEventListener('touchstart', (_) => {
+
+            items.forEach(el=>{
+                el.classList.remove('contBgHover')
+                if(el.children[0].tagName == 'VIDEO'){el.children[0].pause()}
+            })
+
             console.log('clicl')
             console.log(e.children)
             if (e.children[0].classList.contains('itemHover') && e.children[0].tagName=='VIDEO'){e.children[0].pause()} 
