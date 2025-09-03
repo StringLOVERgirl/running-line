@@ -82,9 +82,10 @@ main {
 @media (max-height: 500px) {
   .elementCont {
     width: clamp(180px, 20vw, 250px);
+    overflow-y: visible;
   }
   }
-  
+
 @media (min-width: 700px) and (min-height: 550px) {
 .elementCont:hover {
   clip-path: inset(0%);
