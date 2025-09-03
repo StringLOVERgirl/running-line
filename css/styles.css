@@ -54,9 +54,9 @@ main {
 }
 
 @media (max-height: 500px) {
-  .item {
-  width: clamp(180px, 70%, 250px);
-  }
+.elementCont {
+  width: clamp(180px, 20vw, 250px);
+}
 }
 
 .item {
