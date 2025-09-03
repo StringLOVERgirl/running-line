@@ -6,20 +6,48 @@
 
     addListeners() {
 
+        function isMobile() {
+            return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+          }
+
+          if (isMobile()) {
+        const items = Array.from(document.querySelectorAll('.elementCont'))
+        console.log(items)
+        
+        items.forEach(e=>{
+
+        e.addEventListener('touchstart', (_) => {
+            console.log('clicl')
+            console.log(e.children)
+            if (e.children[0].classList.contains('itemHover') && e.children[0].tagName=='VIDEO'){e.children[0].pause()} 
+            else if (!e.children[0].classList.contains('itemHover') && e.children[0].tagName=='VIDEO'){e.children[0].play()}
+            e.classList.toggle('contBgHover')
+            e.children[0].classList.toggle('itemHover')
+        })
+        })
+    }
     
+
+    
+
+    if (window.innerHeight > 550 && window.innerWidth > 700) {
+
         window.addEventListener("mouseout", (event) => {
             if (event.target.tagName == "VIDEO") {
                 event.target.pause();
             }
         });
 
-        window.addEventListener("mouseover", (event) => {
+        window.addEventListener("mousemove", (event) => {
             let target = event.target;
             console.log(target);
             if (target.tagName == "VIDEO") {
                 target.play();
             }
         });
+    }
+
+
     }
 }
 
@@ -87,8 +115,10 @@ function domLink(arg, type='.'){
 
 
 export function init(){
-    new GlobalListeners();
+    
 
     addMedia(domLink('cont1'));
     addMedia(domLink('cont1'));
+
+    new GlobalListeners();
 }

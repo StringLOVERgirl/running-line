@@ -64,7 +64,7 @@ main {
   cursor: pointer;
 }
 
-.item:hover {
+.itemHover {
   transform: scale(1) translateZ(0);
 }
 
@@ -80,11 +80,28 @@ main {
   align-self: center; 
 }
 
+@media (min-width: 700px) and (min-height: 550px) {
 .elementCont:hover {
   clip-path: inset(0%);
   background-color: greenyellow;
   /* border-radius: 50%; */
 }
+
+.item:hover {
+  transform: scale(1) translateZ(0);
+}
+}
+
+.contBgHover {
+  clip-path: inset(0%);
+  background-color: greenyellow; 
+}
+
+.contBgHoverDisabled {
+  clip-path: inset(40px);
+  background-color: red;
+}
+
 
 .preloadcont {
   height: 100vh;
