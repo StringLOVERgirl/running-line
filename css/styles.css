@@ -90,6 +90,10 @@ main {
 .item:hover {
   transform: scale(1) translateZ(0);
 }
+
+.item {
+  transition: transform 0.85s;
+}
 }
 
 .contBgHover {
