@@ -33,7 +33,7 @@ async function onloaading() {
     document.querySelectorAll('img,video,audio').forEach(el => mediaContent.push(el))
     console.log(mediaContent)
 
-    const total = mediaContent.length;
+    const total = mediaContent.length - 5 ;
     let loadedCount = 0;
     let currentPercentage = 0
 
