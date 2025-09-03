@@ -10,6 +10,8 @@
             return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
           }
 
+          const realitems = Array.from(document.querySelectorAll('.item'))
+
           if (isMobile()) {
         const items = Array.from(document.querySelectorAll('.elementCont'))
         console.log(items)
@@ -41,20 +43,22 @@
 
     if (window.innerHeight > 550 && window.innerWidth > 700) {
 
-        window.addEventListener("mouseout", (event) => {
-            if (event.target.tagName == "VIDEO") {
-                event.target.pause();
-            }
-        });
+        realitems.forEach(e=>{
+            e.addEventListener("mousemove", (_) => {
+                if (e.tagName == "VIDEO") {
+                    e.pause();
+                }
+            });
+        })
 
-        window.addEventListener("mousemove", (event) => {
-            let target = event.target;
-            console.log(target);
-            if (target.tagName == "VIDEO") {
-                target.play();
+        realitems.forEach(e=>{
+        e.addEventListener("mousemove", (_) => {
+            if (e.tagName == "VIDEO") {
+                e.play();
             }
         });
-    }
+    })
+}
 
 
     }
