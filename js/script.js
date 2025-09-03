@@ -21,7 +21,7 @@
             items.forEach(el=>{
                 if (el != e){
                 el.classList.remove('contBgHover')
-                e.children[0].classList.remove('itemHover')
+                el.children[0].classList.remove('itemHover')
                 if(el.children[0].tagName == 'VIDEO'){el.children[0].pause()}
                 }
             })
