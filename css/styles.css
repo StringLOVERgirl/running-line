@@ -59,7 +59,7 @@ main {
   width: clamp(180px, 100%, 250px);
   aspect-ratio: 1/1;
   padding: 0.1em;
-  transition: transform 0.7s;
+  transition: transform 0.9s;
   transform: scale(0.5);
   cursor: pointer;
 }
@@ -70,7 +70,7 @@ main {
 
 .elementCont {
   clip-path: inset(40px);
-  transition: clip-path 0.5s, background-color 0.5s, border-radius 0.5s;
+  transition: clip-path 0.7s, background-color 0.7s, border-radius 0.5s;
   background-color: red;
   display: flex;
   align-items: center;
@@ -92,7 +92,7 @@ main {
 }
 
 .item {
-  transition: transform 0.95s;
+  transition: transform 1.15s;
 }
 }
 
