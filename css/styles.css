@@ -82,12 +82,11 @@ main {
 @media (max-height: 500px) {
   .elementCont {
     width: clamp(180px, 20vw, 250px);
-    overflow-y: visible;
   }
 
-  main {
+  /* main {
     overflow-y: visible;
-  }
+  } */
 
   /* .cont {
     overflow-y: visible;
