@@ -39,13 +39,13 @@ async function onloaading() {
 
     function addPromise(element) {
         return new Promise(resolve => {
-            if (element.tagName == 'IMG' && element.tagName == 'img') {
-                if (element.complete) {
-                    resolve()
-                } else {
-                    element.addEventListener('load', resolve, { once: true })
-                    element.addEventListener('error', resolve, { once: true })
-                }
+            if (element.tagName == 'IMG' || element.tagName == 'img') {
+                // if (element.complete) {
+                    // resolve()
+                // } else {
+                    // element.addEventListener('load', resolve, { once: true })
+                    // element.addEventListener('error', resolve, { once: true })
+                // }
             } else {
                 if (element.readyState >= 4) { // Проверка на загруженное видео/аудио (canplaythrough)
                     resolve();
