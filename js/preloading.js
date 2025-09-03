@@ -33,25 +33,35 @@ async function onloaading() {
     document.querySelectorAll('img,video,audio').forEach(el => mediaContent.push(el))
     console.log(mediaContent)
 
-    const total = mediaContent.length - 5 ;
+    const total = mediaContent.length;
     let loadedCount = 0;
     let currentPercentage = 0
 
     function addPromise(element) {
         return new Promise(resolve => {
-            if (element.tagName == 'IMG' || element.tagName == 'img') {
-                // if (element.complete) {
-                    // resolve()
-                // } else {
-                    // element.addEventListener('load', resolve, { once: true })
-                    // element.addEventListener('error', resolve, { once: true })
-                // }
+
+            let timeoutId;
+
+            function done() {
+                clearTimeout(timeoutId);
+                resolve();
+            }
+
+            if (element.tagName == 'IMG') {
+                if (element.complete && element.naturalWidth != 0) {
+                    resolve()
+                } else {
+                    element.addEventListener('load', resolve, { once: true })
+                    element.addEventListener('error', resolve, { once: true })
+                    timeoutId = setTimeout(done, 7000)
+                }
             } else {
                 if (element.readyState >= 4) { // Проверка на загруженное видео/аудио (canplaythrough)
                     resolve();
                 } else {
                     element.addEventListener('canplaythrough', resolve, { once: true })
                     element.addEventListener('error', resolve, { once: true })
+                    timeoutId = setTimeout(done, 7000)
                 }
             }
         })
