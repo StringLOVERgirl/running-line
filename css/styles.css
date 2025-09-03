@@ -84,13 +84,13 @@ main {
     width: clamp(180px, 20vw, 250px);
   }
 
-  /* main {
-    overflow-y: visible;
-  } */
+  main {
+    overflow: visible;
+  }
 
-  /* .cont {
-    overflow-y: visible;
-  } */
+  .cont {
+    overflow: visible;
+  } 
   }
 
 @media (min-width: 700px) and (min-height: 550px) {
