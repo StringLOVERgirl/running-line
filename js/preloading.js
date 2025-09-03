@@ -39,12 +39,21 @@ async function onloaading() {
 
     function addPromise(element) {
         return new Promise(resolve => {
+
+            let timeoutId;
+
+            function done() {
+                clearTimeout(timeoutId);
+                resolve();
+            }
+
             if (element.tagName == 'IMG') {
                 if (element.complete && element.naturalWidth != 0) {
                     resolve()
                 } else {
                     element.addEventListener('load', resolve, { once: true })
                     element.addEventListener('error', resolve, { once: true })
+                    timeoutId = setTimeout(done, 2000)
                 }
             } else {
                 if (element.readyState >= 4) { // Проверка на загруженное видео/аудио (canplaythrough)
@@ -52,6 +61,7 @@ async function onloaading() {
                 } else {
                     element.addEventListener('canplaythrough', resolve, { once: true })
                     element.addEventListener('error', resolve, { once: true })
+                    timeoutId = setTimeout(done, 2000)
                 }
             }
         })
