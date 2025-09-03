@@ -88,6 +88,10 @@ main {
   main {
     overflow-y: visible;
   }
+
+  .cont {
+    overflow-y: visible;
+  }
   }
 
 @media (min-width: 700px) and (min-height: 550px) {
